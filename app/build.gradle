@@ -3,6 +3,8 @@ apply plugin: 'com.android.application'
 // JitPack Maven
 apply plugin: 'com.github.dcendents.android-maven'
 
+group='com.github.TEENSTITAN'
+
 android {
     compileSdkVersion 23
     buildToolsVersion "24.0.0"
