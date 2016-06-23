@@ -14,7 +14,7 @@ import java.io.LineNumberReader;
 /**
  * Created by tianguorui on 2016/6/23.
  */
-public class WifiUtil {
+public class WiFiUtil {
 
 
     /**
