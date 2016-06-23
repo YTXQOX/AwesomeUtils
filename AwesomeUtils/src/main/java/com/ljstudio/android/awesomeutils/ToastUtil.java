@@ -33,6 +33,7 @@ public class ToastUtil {
         mToast.show();
     }
 
+
     public static void toastShort(Context mContext, int resId, int duration) {
         toastShort(mContext, mContext.getResources().getString(resId), duration);
     }
@@ -51,6 +52,7 @@ public class ToastUtil {
         mHandler.postDelayed(r, duration);
         mToast.show();
     }
+
 
     public static void toastShortCenter(Context mContext, int resId, int duration) {
         toastShort(mContext, mContext.getResources().getString(resId), duration);
@@ -71,6 +73,7 @@ public class ToastUtil {
         mToast.show();
     }
 
+
     public static void toastLong(Context mContext, int resId, int duration) {
         toastLong(mContext, mContext.getResources().getString(resId), duration);
     }
@@ -89,6 +92,7 @@ public class ToastUtil {
         mHandler.postDelayed(r, duration);
         mToast.show();
     }
+
 
     public static void toastLongCenter(Context mContext, int resId, int duration) {
         toastLongCenter(mContext, mContext.getResources().getString(resId), duration);
