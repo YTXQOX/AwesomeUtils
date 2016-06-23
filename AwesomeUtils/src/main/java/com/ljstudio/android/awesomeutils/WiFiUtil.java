@@ -7,6 +7,10 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+
 /**
  * Created by tianguorui on 2016/6/23.
  */
@@ -14,23 +18,22 @@ public class WiFiUtil {
 
     public static String getMac(Context context) {
 
+        String wifiR3g;
+        String mac;
+        String ipAddress;
+
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        String wifiR3g = null;
-        String mac = null;
-        String ipAddress = null;
-        float floatSize = 0;
 
         //是否连接网络
         if (networkInfo != null && networkInfo.isConnected()) {
             //联网方式
             if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
                 wifiR3g = "3G";
-            }
-            else if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+            } else if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
                 wifiR3g = "wifi";
             }
 
@@ -45,6 +48,48 @@ public class WiFiUtil {
         }
 
         return mac;
+    }
+
+    public static String getMac_sys() {
+        String macSerial = null;
+        String str = "";
+        try {
+            Process pp = Runtime.getRuntime().exec("cat /sys/class/net/wlan0/address");
+            InputStreamReader ir = new InputStreamReader(pp.getInputStream());
+            LineNumberReader input = new LineNumberReader(ir);
+
+            for (; null != str; ) {
+                str = input.readLine();
+                if (str != null) {
+                    macSerial = str.trim();
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return macSerial;
+    }
+
+    public static String getMac_proc() {
+        String macSerial = null;
+        String str = "";
+        try {
+            Process pp = Runtime.getRuntime().exec("cat /proc/net/arp");
+            InputStreamReader ir = new InputStreamReader(pp.getInputStream());
+            LineNumberReader input = new LineNumberReader(ir);
+
+            for (; null != str; ) {
+                str = input.readLine();
+                if (str != null) {
+                    macSerial = str.trim();
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return macSerial;
     }
 
     private static String intToIp(int i) {
