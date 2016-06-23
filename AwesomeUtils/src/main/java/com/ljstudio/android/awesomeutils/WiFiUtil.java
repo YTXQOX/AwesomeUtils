@@ -16,6 +16,40 @@ import java.io.LineNumberReader;
  */
 public class WifiUtil {
 
+    /**
+     * get WifiInfo
+     */
+    public static WifiInfo getWifiInfo(Context context) {
+
+        WifiInfo wifiInfo = null;
+        String wifiR3g;
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+
+        //是否连接网络
+        if (networkInfo != null && networkInfo.isConnected()) {
+            //联网方式
+            if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+                wifiR3g = "3G";
+            } else if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+                wifiR3g = "wifi";
+            }
+
+            wifiInfo = wm.getConnectionInfo();
+        } else {
+            wifiR3g = "未连接wifi网络";
+        }
+
+        return wifiInfo;
+    }
+
+
+    /**
+     * get MAC
+     */
     public static String getMac(Context context) {
 
         String wifiR3g;
@@ -55,7 +89,12 @@ public class WifiUtil {
         return mac;
     }
 
+
+    /**
+     * get Mac_sys
+     */
     public static String getMac_sys() {
+
         String macSerial = null;
         String str = "";
         try {
@@ -76,7 +115,12 @@ public class WifiUtil {
         return macSerial;
     }
 
+
+    /**
+     * get Mac_proc
+     */
     public static String getMac_proc() {
+        
         String macSerial = null;
         String str = "";
         try {
@@ -97,6 +141,10 @@ public class WifiUtil {
         return macSerial;
     }
 
+
+    /**
+     * ip
+     */
     private static String intToIp(int i) {
         return (i & 0xFF) +
                 "." + ((i >> 8) & 0xFF) +
