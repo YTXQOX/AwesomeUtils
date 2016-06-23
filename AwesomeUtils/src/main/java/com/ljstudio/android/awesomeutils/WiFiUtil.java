@@ -14,7 +14,7 @@ import java.io.LineNumberReader;
 /**
  * Created by tianguorui on 2016/6/23.
  */
-public class WiFiUtil {
+public class WifiUtil {
 
     public static String getMac(Context context) {
 
@@ -41,6 +41,11 @@ public class WiFiUtil {
             int ipInt = wifiInfo.getIpAddress();
             ipAddress = intToIp(ipInt);
             mac = wifiInfo.getMacAddress();
+
+            String ssid = wifiInfo.getSSID();
+            int networkID = wifiInfo.getNetworkId();
+            int speed = wifiInfo.getLinkSpeed();
+            System.out.print("mac-->" + mac + "ssid-->" + ssid + "networkID-->" + networkID + "speed-->" + speed);
         } else {
             wifiR3g = "未连接wifi网络";
             mac = "未连接wifi网络";
