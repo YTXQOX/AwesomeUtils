@@ -18,7 +18,7 @@ import javax.xml.transform.stream.StreamSource;
 
 final class LogPrinter implements Printer {
 
-  private static final String DEFAULT_TAG = "PRETTYLOGGER";
+  private static final String DEFAULT_TAG = "LJSTUSIO_AWESOMLOG";
 
   private static final int DEBUG = 3;
   private static final int ERROR = 6;
