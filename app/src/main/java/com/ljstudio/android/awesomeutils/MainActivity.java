@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 public class MainActivity extends ListActivity implements OnClickListener {
 
-    static class SimpleAdapter extends ArrayAdapter<Item> implements PinnedSectionListAdapter {
+    static class SimpleAdapter extends ArrayAdapter<Item> implements PinnedSectionListView.PinnedSectionListAdapter {
 
         private static final int[] COLORS = new int[] {
                 R.color.green_light, R.color.orange_light,
