@@ -14,8 +14,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class TimePickerView extends BasePickerView implements View.OnClickListener {
+
     public enum Type {
-        ALL, YEAR_MONTH_DAY, HOURS_MINS, MONTH_DAY_HOUR_MIN , YEAR_MONTH
+        ALL, YEAR_MONTH_DAY, HOURS_MINS, MONTH_DAY_HOUR_MIN, YEAR_MONTH
     }// 四种选择模式，年月日时分，年月日，时分，月日时分
 
     WheelTime wheelTime;
@@ -24,6 +25,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     private static final String TAG_SUBMIT = "submit";
     private static final String TAG_CANCEL = "cancel";
     private OnTimeSelectListener timeSelectListener;
+
 
     public TimePickerView(Context context, Type type) {
         super(context);
@@ -67,6 +69,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
 
     /**
      * 设置选中时间
+     *
      * @param date
      */
     public void setTime(Date date) {
@@ -140,7 +143,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         this.timeSelectListener = timeSelectListener;
     }
 
-    public void setTitle(String title){
+    public void setTitle(String title) {
         tvTitle.setText(title);
     }
 }

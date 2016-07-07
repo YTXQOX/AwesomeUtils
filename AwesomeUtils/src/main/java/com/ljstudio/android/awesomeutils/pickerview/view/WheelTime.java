@@ -1,10 +1,5 @@
 package com.ljstudio.android.awesomeutils.pickerview.view;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.List;
-
 import android.content.Context;
 import android.view.View;
 
@@ -13,6 +8,11 @@ import com.ljstudio.android.awesomeutils.pickerview.TimePickerView;
 import com.ljstudio.android.awesomeutils.pickerview.adapter.NumericWheelAdapter;
 import com.ljstudio.android.awesomeutils.pickerview.lib.WheelView;
 import com.ljstudio.android.awesomeutils.pickerview.listener.OnItemSelectedListener;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class WheelTime {

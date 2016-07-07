@@ -11,14 +11,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
-import com.bigkoo.pickerview.utils.PickerViewAnimateUtil;
-import com.bigkoo.pickerview.R;
-import com.bigkoo.pickerview.listener.OnDismissListener;
+import com.ljstudio.android.awesomeutils.R;
+import com.ljstudio.android.awesomeutils.pickerview.listener.OnDismissListener;
+import com.ljstudio.android.awesomeutils.pickerview.utils.PickerViewAnimateUtil;
 
-/**
- * Created by Sai on 15/11/22.
- * 精仿iOSPickerViewController控件
- */
+
 public class BasePickerView {
     private final FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM
@@ -36,7 +33,7 @@ public class BasePickerView {
     private Animation inAnim;
     private int gravity = Gravity.BOTTOM;
 
-    public BasePickerView(Context context){
+    public BasePickerView(Context context) {
         this.context = context;
 
         initViews();
@@ -44,9 +41,9 @@ public class BasePickerView {
         initEvents();
     }
 
-    protected void initViews(){
+    protected void initViews() {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        decorView = (ViewGroup) ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
+        decorView = (ViewGroup) ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
         rootView = (ViewGroup) layoutInflater.inflate(R.layout.layout_basepickerview, decorView, false);
         rootView.setLayoutParams(new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
@@ -59,8 +56,10 @@ public class BasePickerView {
         inAnim = getInAnimation();
         outAnim = getOutAnimation();
     }
+
     protected void initEvents() {
     }
+
     /**
      * show的时候调用
      *
@@ -70,6 +69,7 @@ public class BasePickerView {
         decorView.addView(view);
         contentContainer.startAnimation(inAnim);
     }
+
     /**
      * 添加这个View到Activity的根视图
      */
@@ -79,6 +79,7 @@ public class BasePickerView {
         }
         onAttached(rootView);
     }
+
     /**
      * 检测该View是不是已经添加到根视图
      *
@@ -88,6 +89,7 @@ public class BasePickerView {
         View view = decorView.findViewById(R.id.outmost_container);
         return view != null;
     }
+
     public void dismiss() {
         if (isDismissing) {
             return;
@@ -123,6 +125,7 @@ public class BasePickerView {
         contentContainer.startAnimation(outAnim);
         isDismissing = true;
     }
+
     public Animation getInAnimation() {
         int res = PickerViewAnimateUtil.getAnimationResource(this.gravity, true);
         return AnimationUtils.loadAnimation(context, res);
@@ -143,12 +146,12 @@ public class BasePickerView {
 
         if (isCancelable) {
             view.setOnTouchListener(onCancelableTouchListener);
-        }
-        else{
+        } else {
             view.setOnTouchListener(null);
         }
         return this;
     }
+
     /**
      * Called when the user touch on black overlay in order to dismiss the dialog
      */
@@ -162,7 +165,7 @@ public class BasePickerView {
         }
     };
 
-    public View findViewById(int id){
+    public View findViewById(int id) {
         return contentContainer.findViewById(id);
     }
 }
