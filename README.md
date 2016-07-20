@@ -13,3 +13,4 @@ common utils & views 4 android
 8. Pinned Section ListView
 9. PickerView
 10. TipsView
+11. TickerView
