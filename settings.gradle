@@ -1,1 +1,1 @@
-include ':app', ':AwesomeUtils-AwesomeUtils-lib'
+include ':app', ':AwesomeUtils-lib'
