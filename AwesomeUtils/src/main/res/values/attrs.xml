@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="pickerview">
-        <attr name="pickerview_gravity">
+    <declare-styleable name="PickerView">
+        <attr name="picker_gravity">
             <enum name="center" value="17"/>
             <enum name="left" value="3"/>
             <enum name="right" value="5"/>
         </attr>
-        <attr name="pickerview_textSize" format="dimension"/>
-        <attr name="pickerview_textColorOut" format="color"/>
-        <attr name="pickerview_textColorCenter" format="color"/>
-        <attr name="pickerview_dividerColor" format="color"/>
+        <attr name="picker_textSize" format="dimension"/>
+        <attr name="picker_textColorOut" format="color"/>
+        <attr name="picker_textColorCenter" format="color"/>
+        <attr name="picker_dividerColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="TickerView">
+        <attr name="ticker_textColor" format="reference|color" />
+        <attr name="ticker_textSize" format="reference|dimension" />
+        <attr name="ticker_animationDuration" format="reference|integer" />
     </declare-styleable>
 </resources>
