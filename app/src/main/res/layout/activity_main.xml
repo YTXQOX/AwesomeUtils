@@ -1,7 +1,6 @@
-<com.ljstudio.android.awesomeutils.PinnedSectionListView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ljstudio.android.awesomeutils.sample.PinnedSectionListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/list"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:divider="@null"
     android:footerDividersEnabled="false"
     android:headerDividersEnabled="false" />
