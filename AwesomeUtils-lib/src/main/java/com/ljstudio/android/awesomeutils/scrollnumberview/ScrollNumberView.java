@@ -1,4 +1,4 @@
-package com.ljstudio.android.awesomeutils.scrollnumber;
+package com.ljstudio.android.awesomeutils.scrollnumberview;
 
 import android.content.Context;
 import android.graphics.Canvas;
