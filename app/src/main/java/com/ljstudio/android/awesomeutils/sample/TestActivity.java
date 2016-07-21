@@ -38,14 +38,14 @@ public class TestActivity extends AppCompatActivity {
 
         myMeetingData1.setId("PP12345678");
         myMeetingData1.setTitle("开会开会开会");
-        myMeetingData1.setStarttime("2016-07-20 09:30");
-        myMeetingData1.setEndtime("2016-07-20 16:30");
+        myMeetingData1.setStarttime("2016-07-21 09:30");
+        myMeetingData1.setEndtime("2016-07-21 16:30");
         myMeetingData1.setConference_name("暗部密室10001");
         myMeetingData1.setConference_id("A10001");
 
         myMeetingData2.setId("PP87654321");
         myMeetingData2.setTitle("不开会不开会不开会");
-        myMeetingData2.setStarttime("2016-07-25 05:30");
+        myMeetingData2.setStarttime("2016-08-31 05:30");
         myMeetingData2.setEndtime("2016-07-25 22:30");
         myMeetingData2.setConference_name("大蛇丸基地10086");
         myMeetingData2.setConference_id("A10086");

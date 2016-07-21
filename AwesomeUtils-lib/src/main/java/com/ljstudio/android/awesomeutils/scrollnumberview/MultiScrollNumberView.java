@@ -15,9 +15,7 @@ import com.ljstudio.android.awesomeutils.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by wuhaojie on 2016/7/19 20:39.
- */
+
 public class MultiScrollNumberView extends LinearLayout {
     private Context mContext;
     private List<Integer> mTargetNumbers = new ArrayList<>();
@@ -52,8 +50,6 @@ public class MultiScrollNumberView extends LinearLayout {
 
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER);
-
-
     }
 
     public void setNumber(int val) {
