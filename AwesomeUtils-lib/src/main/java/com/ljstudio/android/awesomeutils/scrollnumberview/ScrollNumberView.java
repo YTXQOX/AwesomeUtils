@@ -48,7 +48,6 @@ public class ScrollNumberView extends View {
         measureTextHeight();
 
 //        setNumber(0, 6, 1000);
-
     }
 
     public void setNumber(final int from, final int to, long delay) {
