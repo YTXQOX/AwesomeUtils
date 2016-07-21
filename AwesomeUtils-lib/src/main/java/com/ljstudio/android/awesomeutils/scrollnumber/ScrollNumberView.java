@@ -11,7 +11,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 
-public class ScrollNumber extends View {
+public class ScrollNumberView extends View {
 
     private int mDeltaNum;
     private int mCurNum;
@@ -29,15 +29,15 @@ public class ScrollNumber extends View {
     private int mTextSize = sp2px(130);
     private int mTextColor = 0xFF000000;
 
-    public ScrollNumber(Context context) {
+    public ScrollNumberView(Context context) {
         this(context, null);
     }
 
-    public ScrollNumber(Context context, AttributeSet attrs) {
+    public ScrollNumberView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ScrollNumber(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ScrollNumberView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

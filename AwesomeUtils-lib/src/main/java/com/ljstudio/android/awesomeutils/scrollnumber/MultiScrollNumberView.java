@@ -18,32 +18,32 @@ import java.util.List;
 /**
  * Created by wuhaojie on 2016/7/19 20:39.
  */
-public class MultiScrollNumber extends LinearLayout {
+public class MultiScrollNumberView extends LinearLayout {
     private Context mContext;
     private List<Integer> mTargetNumbers = new ArrayList<>();
     private List<Integer> mPrimaryNumbers = new ArrayList<>();
-    private List<ScrollNumber> mScrollNumbers = new ArrayList<>();
+    private List<ScrollNumberView> mScrollNumbers = new ArrayList<>();
     private int mTextSize = 130;
 
     private int[] mTextColors = new int[]{R.color.scroll_number_color};
     private Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
 
-    public MultiScrollNumber(Context context) {
+    public MultiScrollNumberView(Context context) {
         this(context, null);
     }
 
-    public MultiScrollNumber(Context context, AttributeSet attrs) {
+    public MultiScrollNumberView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MultiScrollNumber(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MultiScrollNumberView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
 
-        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.MultiScrollNumber);
-        int primaryNumber = typedArray.getInteger(R.styleable.MultiScrollNumber_primary_number, 0);
-        int targetNumber = typedArray.getInteger(R.styleable.MultiScrollNumber_target_number, 0);
-        int numberSize = typedArray.getInteger(R.styleable.MultiScrollNumber_number_size, 130);
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.MultiScrollNumberView);
+        int primaryNumber = typedArray.getInteger(R.styleable.MultiScrollNumberView_primary_number, 0);
+        int targetNumber = typedArray.getInteger(R.styleable.MultiScrollNumberView_target_number, 0);
+        int numberSize = typedArray.getInteger(R.styleable.MultiScrollNumberView_number_size, 130);
 
         setNumber(primaryNumber, targetNumber);
         setTextSize(numberSize);
@@ -67,7 +67,7 @@ public class MultiScrollNumber extends LinearLayout {
         }
 
         for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
-            ScrollNumber scrollNumber = new ScrollNumber(mContext);
+            ScrollNumberView scrollNumber = new ScrollNumberView(mContext);
             scrollNumber.setTextColor(ContextCompat
                     .getColor(mContext, mTextColors[i % mTextColors.length]));
             scrollNumber.setTextSize(mTextSize);
@@ -108,7 +108,7 @@ public class MultiScrollNumber extends LinearLayout {
         }
 
         for (int i = mTargetNumbers.size() - 1; i >= 0; i--) {
-            ScrollNumber scrollNumber = new ScrollNumber(mContext);
+            ScrollNumberView scrollNumber = new ScrollNumberView(mContext);
             scrollNumber.setTextColor(ContextCompat
                     .getColor(mContext, mTextColors[i % mTextColors.length]));
             scrollNumber.setTextSize(mTextSize);
@@ -124,7 +124,7 @@ public class MultiScrollNumber extends LinearLayout {
             throw new IllegalArgumentException("color array couldn't be empty!");
         mTextColors = textColors;
         for (int i = mScrollNumbers.size() - 1; i >= 0; i--) {
-            ScrollNumber scrollNumber = mScrollNumbers.get(i);
+            ScrollNumberView scrollNumber = mScrollNumbers.get(i);
             scrollNumber.setTextColor(ContextCompat
                     .getColor(mContext, mTextColors[i % mTextColors.length]));
         }
@@ -134,7 +134,7 @@ public class MultiScrollNumber extends LinearLayout {
     public void setTextSize(int textSize) {
         if (textSize <= 0) throw new IllegalArgumentException("text size must > 0!");
         mTextSize = textSize;
-        for (ScrollNumber s : mScrollNumbers) {
+        for (ScrollNumberView s : mScrollNumbers) {
             s.setTextSize(textSize);
         }
     }
@@ -143,7 +143,7 @@ public class MultiScrollNumber extends LinearLayout {
         if (interpolator == null)
             throw new IllegalArgumentException("interpolator couldn't be null");
         mInterpolator = interpolator;
-        for (ScrollNumber s : mScrollNumbers) {
+        for (ScrollNumberView s : mScrollNumbers) {
             s.setInterpolator(interpolator);
         }
     }

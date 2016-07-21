@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ljstudio.android.awesomeutils.pinnedsection.PinnedSectionListView;
+
 import java.util.Locale;
 
 
