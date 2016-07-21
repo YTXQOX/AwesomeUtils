@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AwesomeUtils</string>
+    <string name="app_name">AwesomeUtils-lib</string>
 
     <string name="pickerview_cancel">Cancel</string>
     <string name="pickerview_submit">Confirm</string>

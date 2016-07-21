@@ -114,9 +114,9 @@ public class WheelView extends View {
 
     public WheelView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        textColorOut = getResources().getColor(R.color.pickerview_wheelview_textcolor_out);
-        textColorCenter = getResources().getColor(R.color.pickerview_wheelview_textcolor_center);
-        dividerColor = getResources().getColor(R.color.pickerview_wheelview_textcolor_divider);
+        textColorOut = getResources().getColor(R.color.picker_view_wheelview_textcolor_out);
+        textColorCenter = getResources().getColor(R.color.picker_view_wheelview_textcolor_center);
+        dividerColor = getResources().getColor(R.color.picker_view_wheelview_textcolor_divider);
         //配合customTextSize使用，customTextSize为true才会发挥效果
         textSize = getResources().getDimensionPixelSize(R.dimen.pickerview_textsize);
         customTextSize = getResources().getBoolean(R.bool.pickerview_customTextSize);

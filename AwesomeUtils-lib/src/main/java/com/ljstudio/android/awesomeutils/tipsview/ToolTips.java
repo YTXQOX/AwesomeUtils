@@ -207,8 +207,8 @@ public class ToolTips {
             mOffsetX = 0;
             mOffsetY = 0;
             mArrow = true;
-            mBackgroundColor = context.getResources().getColor(R.color.tipsview_color_bg);
-            mTextColor = context.getResources().getColor(R.color.tipsview_color_text);
+            mBackgroundColor = context.getResources().getColor(R.color.tips_view_color_bg);
+            mTextColor = context.getResources().getColor(R.color.tips_view_color_text);
             mTextGravity = GRAVITY_LEFT;
         }
 

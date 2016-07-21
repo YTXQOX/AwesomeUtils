@@ -17,4 +17,11 @@
         <attr name="ticker_textSize" format="reference|dimension" />
         <attr name="ticker_animationDuration" format="reference|integer" />
     </declare-styleable>
+
+    <declare-styleable name="MultiScrollNumber">
+        <attr name="primary_number" format="integer"/>
+        <attr name="target_number" format="integer"/>
+        <attr name="number_size" format="integer"/>
+        <!--<attr name="number_color" format="color"/>-->
+    </declare-styleable>
 </resources>

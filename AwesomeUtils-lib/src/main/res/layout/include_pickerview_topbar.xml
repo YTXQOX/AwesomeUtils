@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pickerview_bg_topbar">
+    android:background="@color/picker_view_bg_topbar">
 
     <Button
         android:id="@+id/btnCancel"
@@ -24,7 +24,7 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/btnSubmit"
         android:layout_toRightOf="@+id/btnCancel"
-        android:textColor="@color/pickerview_topbar_title"
+        android:textColor="@color/picker_view_topbar_title"
         android:textSize="@dimen/pickerview_topbar_title_textsize" />
 
     <Button
