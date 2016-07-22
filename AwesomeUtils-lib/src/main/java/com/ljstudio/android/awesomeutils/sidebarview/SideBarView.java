@@ -21,7 +21,7 @@ public class SideBarView extends View {
 
     private static final String TAG = SideBarView.class.getSimpleName();
 
-    interface OnTouchingLetterChangedListener {
+    public interface OnTouchingLetterChangedListener {
         void onTouchingLetterChanged(String s);
     }
 

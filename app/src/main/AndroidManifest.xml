@@ -25,6 +25,7 @@
         </activity>
 
         <activity android:name=".TestActivity"/>
+        <activity android:name=".SideBarActivity"/>
 
     </application>
 
