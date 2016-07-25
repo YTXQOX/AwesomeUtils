@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AwesomeUtils-sample</string>
+    <string name="app_name">sample</string>
 
     <string name="action_fastscroll">Fast scroll</string>
     <string name="action_addpadding">Add padding</string>
