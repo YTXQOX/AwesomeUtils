@@ -13,10 +13,13 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TimePickerView extends BasePickerView implements View.OnClickListener {
 
+/**
+ * 时间选择器
+ */
+public class TimePickerView extends BasePickerView implements View.OnClickListener {
     public enum Type {
-        ALL, YEAR_MONTH_DAY, HOURS_MINS, MONTH_DAY_HOUR_MIN, YEAR_MONTH
+        ALL, YEAR_MONTH_DAY, HOURS_MINS, MONTH_DAY_HOUR_MIN , YEAR_MONTH
     }// 四种选择模式，年月日时分，年月日，时分，月日时分
 
     WheelTime wheelTime;
@@ -25,7 +28,6 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     private static final String TAG_SUBMIT = "submit";
     private static final String TAG_CANCEL = "cancel";
     private OnTimeSelectListener timeSelectListener;
-
 
     public TimePickerView(Context context, Type type) {
         super(context);
@@ -58,9 +60,9 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
 
     /**
      * 设置可以选择的时间范围
-     *
-     * @param startYear
-     * @param endYear
+     * 要在setTime之前调用才有效果
+     * @param startYear 开始年份
+     * @param endYear 结束年份
      */
     public void setRange(int startYear, int endYear) {
         wheelTime.setStartYear(startYear);
@@ -69,8 +71,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
 
     /**
      * 设置选中时间
-     *
-     * @param date
+     * @param date 时间
      */
     public void setTime(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -108,8 +109,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
 
     /**
      * 设置是否循环滚动
-     *
-     * @param cyclic
+     * @param cyclic 是否循环
      */
     public void setCyclic(boolean cyclic) {
         wheelTime.setCyclic(cyclic);
@@ -136,14 +136,14 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     }
 
     public interface OnTimeSelectListener {
-        public void onTimeSelect(Date date);
+        void onTimeSelect(Date date);
     }
 
     public void setOnTimeSelectListener(OnTimeSelectListener timeSelectListener) {
         this.timeSelectListener = timeSelectListener;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title){
         tvTitle.setText(title);
     }
 }

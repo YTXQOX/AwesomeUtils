@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 
 import com.ljstudio.android.awesomeutils.R;
 import com.ljstudio.android.awesomeutils.pickerview.listener.OnDismissListener;
-import com.ljstudio.android.awesomeutils.pickerview.utils.PickerViewAnimateUtil;
 
 
 public class BasePickerView {
@@ -27,13 +26,14 @@ public class BasePickerView {
     private ViewGroup rootView;//附加View 的 根View
 
     private OnDismissListener onDismissListener;
-    private boolean isDismissing;
+    private boolean dismissing;
 
     private Animation outAnim;
     private Animation inAnim;
+    private boolean isShowing;
     private int gravity = Gravity.BOTTOM;
 
-    public BasePickerView(Context context) {
+    public BasePickerView(Context context){
         this.context = context;
 
         initViews();
@@ -41,9 +41,9 @@ public class BasePickerView {
         initEvents();
     }
 
-    protected void initViews() {
+    protected void initViews(){
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        decorView = (ViewGroup) ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
+        decorView = (ViewGroup) ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
         rootView = (ViewGroup) layoutInflater.inflate(R.layout.layout_basepickerview, decorView, false);
         rootView.setLayoutParams(new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
@@ -56,10 +56,8 @@ public class BasePickerView {
         inAnim = getInAnimation();
         outAnim = getOutAnimation();
     }
-
     protected void initEvents() {
     }
-
     /**
      * show的时候调用
      *
@@ -69,7 +67,6 @@ public class BasePickerView {
         decorView.addView(view);
         contentContainer.startAnimation(inAnim);
     }
-
     /**
      * 添加这个View到Activity的根视图
      */
@@ -77,23 +74,23 @@ public class BasePickerView {
         if (isShowing()) {
             return;
         }
+        isShowing = true;
         onAttached(rootView);
     }
-
     /**
      * 检测该View是不是已经添加到根视图
-     *
      * @return 如果视图已经存在该View返回true
      */
     public boolean isShowing() {
-        View view = decorView.findViewById(R.id.outmost_container);
-        return view != null;
+        return rootView.getParent() != null || isShowing;
     }
 
     public void dismiss() {
-        if (isDismissing) {
+        if (dismissing) {
             return;
         }
+
+        dismissing = true;
 
         //消失动画
         outAnim.setAnimationListener(new Animation.AnimationListener() {
@@ -107,12 +104,7 @@ public class BasePickerView {
                 decorView.post(new Runnable() {
                     @Override
                     public void run() {
-                        //从activity根视图移除
-                        decorView.removeView(rootView);
-                        isDismissing = false;
-                        if (onDismissListener != null) {
-                            onDismissListener.onDismiss(BasePickerView.this);
-                        }
+                        dismissImmediately();
                     }
                 });
             }
@@ -123,9 +115,18 @@ public class BasePickerView {
             }
         });
         contentContainer.startAnimation(outAnim);
-        isDismissing = true;
     }
 
+    public void dismissImmediately() {
+        //从activity根视图移除
+        decorView.removeView(rootView);
+        isShowing = false;
+        dismissing = false;
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(BasePickerView.this);
+        }
+
+    }
     public Animation getInAnimation() {
         int res = PickerViewAnimateUtil.getAnimationResource(this.gravity, true);
         return AnimationUtils.loadAnimation(context, res);
@@ -146,12 +147,12 @@ public class BasePickerView {
 
         if (isCancelable) {
             view.setOnTouchListener(onCancelableTouchListener);
-        } else {
+        }
+        else{
             view.setOnTouchListener(null);
         }
         return this;
     }
-
     /**
      * Called when the user touch on black overlay in order to dismiss the dialog
      */
@@ -165,7 +166,7 @@ public class BasePickerView {
         }
     };
 
-    public View findViewById(int id) {
+    public View findViewById(int id){
         return contentContainer.findViewById(id);
     }
 }

@@ -13,12 +13,10 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.ljstudio.android.awesomeutils.R;
 import com.ljstudio.android.awesomeutils.pickerview.adapter.WheelAdapter;
 import com.ljstudio.android.awesomeutils.pickerview.listener.OnItemSelectedListener;
+import com.ljstudio.android.awesomeutils.pickerview.model.IPickerViewData;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -106,7 +104,6 @@ public class WheelView extends View {
     private int drawOutContentStart = 0;//非中间文字开始绘制位置
     private static final float SCALECONTENT = 0.8F;//非中间文字则用此控制高度，压扁形成3d错觉
     private static final float CENTERCONTENTOFFSET = 6;//中间文字文字居中需要此偏移值
-    private static final String GETPICKERVIEWTEXT = "getPickerViewText";//反射的方法名
 
     public WheelView(Context context) {
         this(context, null);
@@ -114,19 +111,19 @@ public class WheelView extends View {
 
     public WheelView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        textColorOut = getResources().getColor(R.color.picker_view_wheelview_textcolor_out);
-        textColorCenter = getResources().getColor(R.color.picker_view_wheelview_textcolor_center);
-        dividerColor = getResources().getColor(R.color.picker_view_wheelview_textcolor_divider);
+        textColorOut = getResources().getColor(R.color.pickerview_wheelview_textcolor_out);
+        textColorCenter = getResources().getColor(R.color.pickerview_wheelview_textcolor_center);
+        dividerColor = getResources().getColor(R.color.pickerview_wheelview_textcolor_divider);
         //配合customTextSize使用，customTextSize为true才会发挥效果
         textSize = getResources().getDimensionPixelSize(R.dimen.pickerview_textsize);
         customTextSize = getResources().getBoolean(R.bool.pickerview_customTextSize);
         if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PickerView, 0, 0);
-            mGravity = a.getInt(R.styleable.PickerView_picker_gravity, Gravity.CENTER);
-            textColorOut = a.getColor(R.styleable.PickerView_picker_textColorOut, textColorOut);
-            textColorCenter = a.getColor(R.styleable.PickerView_picker_textColorCenter, textColorCenter);
-            dividerColor = a.getColor(R.styleable.PickerView_picker_dividerColor, dividerColor);
-            textSize = a.getDimensionPixelOffset(R.styleable.PickerView_picker_textSize, textSize);
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.pickerview, 0, 0);
+            mGravity = a.getInt(R.styleable.pickerview_pickerview_gravity, Gravity.CENTER);
+            textColorOut = a.getColor(R.styleable.pickerview_pickerview_textColorOut, textColorOut);
+            textColorCenter = a.getColor(R.styleable.pickerview_pickerview_textColorCenter, textColorCenter);
+            dividerColor = a.getColor(R.styleable.pickerview_pickerview_dividerColor, dividerColor);
+            textSize = a.getDimensionPixelOffset(R.styleable.pickerview_pickerview_textSize, textSize);
         }
         initLoopView(context);
     }
@@ -250,8 +247,7 @@ public class WheelView extends View {
 
     /**
      * 设置是否循环滚动
-     *
-     * @param cyclic
+     * @param cyclic 是否循环
      */
     public final void setCyclic(boolean cyclic) {
         isLoop = cyclic;
@@ -371,6 +367,8 @@ public class WheelView extends View {
             if (angle >= 90F || angle <= -90F) {
                 canvas.restore();
             } else {
+
+
                 String contentText = getContentText(visibles[counter]);
 
                 //计算开始绘制的位置
@@ -439,23 +437,18 @@ public class WheelView extends View {
     }
 
     /**
-     * 根据传进来的对象反射出getPickerViewText()方法，来获取需要显示的值
-     *
-     * @param item
-     * @return
+     * 根据传进来的对象获取getPickerViewText()方法，来获取需要显示的值
+     * @param item 数据源的item
+     * @return 对应显示的字符串
      */
     private String getContentText(Object item) {
-        String contentText = item.toString();
-        try {
-            Class<?> clz = item.getClass();
-            Method m = clz.getMethod(GETPICKERVIEWTEXT);
-            contentText = m.invoke(item, new Object[0]).toString();
-        } catch (NoSuchMethodException e) {
-        } catch (InvocationTargetException e) {
-        } catch (IllegalAccessException e) {
-        } catch (Exception e) {
+        if (item == null) {
+            return "";
         }
-        return contentText;
+        else if (item instanceof IPickerViewData) {
+            return ((IPickerViewData) item).getPickerViewText();
+        }
+        return item.toString();
     }
 
     private void measuredCenterContentStart(String content) {
@@ -557,8 +550,7 @@ public class WheelView extends View {
 
     /**
      * 获取Item个数
-     *
-     * @return
+     * @return item个数
      */
     public int getItemsCount() {
         return adapter != null ? adapter.getItemsCount() : 0;
@@ -566,8 +558,7 @@ public class WheelView extends View {
 
     /**
      * 附加在右边的单位字符串
-     *
-     * @param label
+     * @param label 单位
      */
     public void setLabel(String label) {
         this.label = label;
@@ -589,5 +580,4 @@ public class WheelView extends View {
         }
         return iRet;
     }
-
 }

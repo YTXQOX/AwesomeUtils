@@ -7,7 +7,6 @@ import com.ljstudio.android.awesomeutils.R;
 
 public class PickerViewAnimateUtil {
     private static final int INVALID = -1;
-
     /**
      * Get default animation resource when not defined by the user
      *
