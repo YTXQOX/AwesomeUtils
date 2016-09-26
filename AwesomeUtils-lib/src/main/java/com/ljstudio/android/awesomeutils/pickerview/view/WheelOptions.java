@@ -150,8 +150,8 @@ public class WheelOptions<T> {
 	}
 
 	public void setCustomTextSize(int size) {
-		wv_option3.setCustomTextSize(size);
-		wv_option3.setCustomTextSize(size);
+		wv_option1.setCustomTextSize(size);
+		wv_option2.setCustomTextSize(size);
 		wv_option3.setCustomTextSize(size);
 	}
 
