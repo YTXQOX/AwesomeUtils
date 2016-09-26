@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.ljstudio.android.awesomeutils.R;
 import com.ljstudio.android.awesomeutils.pickerview.adapter.WheelAdapter;
 import com.ljstudio.android.awesomeutils.pickerview.listener.OnItemSelectedListener;
 import com.ljstudio.android.awesomeutils.pickerview.model.IPickerViewData;
@@ -111,19 +112,19 @@ public class WheelView extends View {
 
     public WheelView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        textColorOut = getResources().getColor(R.color.pickerview_wheelview_textcolor_out);
-        textColorCenter = getResources().getColor(R.color.pickerview_wheelview_textcolor_center);
-        dividerColor = getResources().getColor(R.color.pickerview_wheelview_textcolor_divider);
+        textColorOut = getResources().getColor(R.color.picker_view_wheelview_textcolor_out);
+        textColorCenter = getResources().getColor(R.color.picker_view_wheelview_textcolor_center);
+        dividerColor = getResources().getColor(R.color.picker_view_wheelview_textcolor_divider);
         //配合customTextSize使用，customTextSize为true才会发挥效果
         textSize = getResources().getDimensionPixelSize(R.dimen.pickerview_textsize);
         customTextSize = getResources().getBoolean(R.bool.pickerview_customTextSize);
         if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.pickerview, 0, 0);
-            mGravity = a.getInt(R.styleable.pickerview_pickerview_gravity, Gravity.CENTER);
-            textColorOut = a.getColor(R.styleable.pickerview_pickerview_textColorOut, textColorOut);
-            textColorCenter = a.getColor(R.styleable.pickerview_pickerview_textColorCenter, textColorCenter);
-            dividerColor = a.getColor(R.styleable.pickerview_pickerview_dividerColor, dividerColor);
-            textSize = a.getDimensionPixelOffset(R.styleable.pickerview_pickerview_textSize, textSize);
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PickerView, 0, 0);
+            mGravity = a.getInt(R.styleable.PickerView_picker_gravity, Gravity.CENTER);
+            textColorOut = a.getColor(R.styleable.PickerView_picker_textColorOut, textColorOut);
+            textColorCenter = a.getColor(R.styleable.PickerView_picker_textColorCenter, textColorCenter);
+            dividerColor = a.getColor(R.styleable.PickerView_picker_dividerColor, dividerColor);
+            textSize = a.getDimensionPixelOffset(R.styleable.PickerView_picker_textSize, textSize);
         }
         initLoopView(context);
     }
@@ -562,6 +563,14 @@ public class WheelView extends View {
      */
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    /**
+     * 滚动区域的字体大小
+     * @param textSize
+     */
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
     }
 
     public void setGravity(int gravity) {

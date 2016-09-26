@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import com.ljstudio.android.awesomeutils.R;
 import com.ljstudio.android.awesomeutils.pickerview.listener.OnDismissListener;
+import com.ljstudio.android.awesomeutils.pickerview.utils.PickerViewAnimateUtil;
 
 
 public class BasePickerView {

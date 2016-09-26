@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ljstudio.android.awesomeutils.R;
 import com.ljstudio.android.awesomeutils.pickerview.view.BasePickerView;
 import com.ljstudio.android.awesomeutils.pickerview.view.WheelOptions;
 

@@ -35,10 +35,10 @@ public class WheelTime {
 	public WheelTime(View view) {
 		super();
 		this.view = view;
-		type = Type.ALL;
+		type = TimePickerView.Type.ALL;
 		setView(view);
 	}
-	public WheelTime(View view,Type type) {
+	public WheelTime(View view,TimePickerView.Type type) {
 		super();
 		this.view = view;
 		this.type = type;
