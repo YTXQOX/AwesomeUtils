@@ -369,8 +369,6 @@ public class WheelView extends View {
             if (angle >= 90F || angle <= -90F) {
                 canvas.restore();
             } else {
-
-
                 String contentText = getContentText(visibles[counter]);
 
                 //计算开始绘制的位置
@@ -571,12 +569,14 @@ public class WheelView extends View {
     /**
      * 滚动区域的字体大小
      *
-     * @param textSize
+     * @param size
      */
     public void setCustomTextSize(int size) {
-        this.textSize = size;
-        paintOuterText.setTextSize(textSize);
-        paintCenterText.setTextSize(textSize);
+        if (size > 0.0F) {
+            this.textSize = (int) (context.getResources().getDisplayMetrics().density * size);
+            paintOuterText.setTextSize(textSize);
+            paintCenterText.setTextSize(textSize);
+        }
     }
 
     public void setGravity(int gravity) {

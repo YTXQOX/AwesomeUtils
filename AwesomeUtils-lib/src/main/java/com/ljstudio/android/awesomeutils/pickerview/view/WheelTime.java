@@ -194,7 +194,6 @@ public class WheelTime {
 		wv_year.setTextSize(textSize);
 		wv_hours.setTextSize(textSize);
 		wv_mins.setTextSize(textSize);
-
 	}
 
 	public void setCustomTextSize(int size) {
