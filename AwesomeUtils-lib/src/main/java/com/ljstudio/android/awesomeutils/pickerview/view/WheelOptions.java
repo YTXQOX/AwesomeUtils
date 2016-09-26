@@ -149,6 +149,12 @@ public class WheelOptions<T> {
 			wv_option3.setLabel(label3);
 	}
 
+	public void setCustomTextSize(int size) {
+		wv_option3.setCustomTextSize(size);
+		wv_option3.setCustomTextSize(size);
+		wv_option3.setCustomTextSize(size);
+	}
+
 	/**
 	 * 设置是否循环滚动
 	 * @param cyclic 是否循环

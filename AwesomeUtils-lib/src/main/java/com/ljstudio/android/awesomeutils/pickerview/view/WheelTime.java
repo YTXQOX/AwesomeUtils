@@ -197,6 +197,14 @@ public class WheelTime {
 
 	}
 
+	public void setCustomTextSize(int size) {
+		wv_year.setCustomTextSize(size);
+		wv_month.setCustomTextSize(size);
+		wv_day.setCustomTextSize(size);
+		wv_hours.setCustomTextSize(size);
+		wv_mins.setCustomTextSize(size);
+	}
+
 	/**
 	 * 设置是否循环滚动
 	 * @param cyclic

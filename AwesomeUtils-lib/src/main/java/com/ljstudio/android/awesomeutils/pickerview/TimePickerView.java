@@ -107,10 +107,14 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
 //        show();
 //    }
 
-    /**
-     * 设置是否循环滚动
-     * @param cyclic 是否循环
-     */
+    public void setCustomTextSize(int size) {
+        wheelTime.setCustomTextSize(size);
+    }
+
+        /**
+         * 设置是否循环滚动
+         * @param cyclic 是否循环
+         */
     public void setCyclic(boolean cyclic) {
         wheelTime.setCyclic(cyclic);
     }
