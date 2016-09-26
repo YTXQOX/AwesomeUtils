@@ -573,7 +573,7 @@ public class WheelView extends View {
      */
     public void setCustomTextSize(int size) {
         if (size > 0.0F) {
-            this.textSize = (int) (context.getResources().getDisplayMetrics().density * size);
+            this.textSize = (int) (context.getResources().getDisplayMetrics().scaledDensity * size);
             paintOuterText.setTextSize(textSize);
             paintCenterText.setTextSize(textSize);
         }
