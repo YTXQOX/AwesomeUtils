@@ -34,6 +34,7 @@ public class BasePickerView {
     private boolean isShowing;
     private int gravity = Gravity.BOTTOM;
 
+
     public BasePickerView(Context context){
         this.context = context;
 
@@ -57,8 +58,10 @@ public class BasePickerView {
         inAnim = getInAnimation();
         outAnim = getOutAnimation();
     }
+
     protected void initEvents() {
     }
+
     /**
      * show的时候调用
      *
@@ -68,6 +71,7 @@ public class BasePickerView {
         decorView.addView(view);
         contentContainer.startAnimation(inAnim);
     }
+
     /**
      * 添加这个View到Activity的根视图
      */
@@ -78,6 +82,7 @@ public class BasePickerView {
         isShowing = true;
         onAttached(rootView);
     }
+
     /**
      * 检测该View是不是已经添加到根视图
      * @return 如果视图已经存在该View返回true
@@ -126,8 +131,8 @@ public class BasePickerView {
         if (onDismissListener != null) {
             onDismissListener.onDismiss(BasePickerView.this);
         }
-
     }
+
     public Animation getInAnimation() {
         int res = PickerViewAnimateUtil.getAnimationResource(this.gravity, true);
         return AnimationUtils.loadAnimation(context, res);

@@ -140,14 +140,18 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
     public void onClick(View v) {
         String tag = (String) v.getTag();
         if (tag.equals(TAG_CANCEL)) {
-            dismiss();
+            if (isShowing()) {
+                dismiss();
+            }
             return;
         } else {
             if (optionsSelectListener != null) {
                 int[] optionsCurrentItems = wheelOptions.getCurrentItems();
                 optionsSelectListener.onOptionsSelect(optionsCurrentItems[0], optionsCurrentItems[1], optionsCurrentItems[2]);
             }
-            dismiss();
+            if (isShowing()) {
+                dismiss();
+            }
             return;
         }
     }
