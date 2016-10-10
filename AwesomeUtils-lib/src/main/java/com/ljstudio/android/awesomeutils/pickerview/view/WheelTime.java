@@ -172,7 +172,7 @@ public class WheelTime {
 			wv_hours.setVisibility(View.GONE);
 			wv_mins.setVisibility(View.GONE);
 			break;
-		case HOURS_MIN:
+		case HOUR_MIN:
 			textSize = textSize * 4;
 			wv_year.setVisibility(View.GONE);
 			wv_month.setVisibility(View.GONE);
