@@ -3,6 +3,7 @@ package com.ljstudio.android.awesomeutils.pickerview;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ljstudio.android.awesomeutils.R;
@@ -18,19 +19,24 @@ import java.util.Date;
  * 时间选择器
  */
 public class TimePickerView extends BasePickerView implements View.OnClickListener {
+
     public enum Type {
-        ALL, YEAR_MONTH_DAY, HOURS_MINS, MONTH_DAY_HOUR_MIN , YEAR_MONTH
+        ALL, YEAR_MONTH_DAY, HOURS_MIN, MONTH_DAY_HOUR_MIN , YEAR_MONTH
     }// 四种选择模式，年月日时分，年月日，时分，月日时分
 
-    WheelTime wheelTime;
+    private WheelTime wheelTime;
     private View btnSubmit, btnCancel;
     private TextView tvTitle;
     private static final String TAG_SUBMIT = "submit";
     private static final String TAG_CANCEL = "cancel";
     private OnTimeSelectListener timeSelectListener;
 
+    private Context mContext;
+
+
     public TimePickerView(Context context, Type type) {
         super(context);
+        this.mContext = context;
 
         LayoutInflater.from(context).inflate(R.layout.pickerview_time, contentContainer);
         // -----确定和取消按钮
@@ -150,4 +156,13 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     public void setTitle(String title){
         tvTitle.setText(title);
     }
+
+    public void setSubmitColor(int drawable) {
+        ((Button)btnSubmit).setTextColor(mContext.getResources().getColor(drawable));
+    }
+
+    public void setCancelColor(int drawable) {
+        ((Button)btnCancel).setTextColor(mContext.getResources().getColor(drawable));
+    }
+
 }

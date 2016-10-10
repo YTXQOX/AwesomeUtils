@@ -3,6 +3,7 @@ package com.ljstudio.android.awesomeutils.pickerview;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ljstudio.android.awesomeutils.R;
@@ -16,16 +17,20 @@ import java.util.ArrayList;
  */
 public class OptionsPickerView<T> extends BasePickerView implements View.OnClickListener {
 
-    WheelOptions<T> wheelOptions;
+    private WheelOptions<T> wheelOptions;
     private View btnSubmit, btnCancel;
     private TextView tvTitle;
     private OnOptionsSelectListener optionsSelectListener;
     private static final String TAG_SUBMIT = "submit";
     private static final String TAG_CANCEL = "cancel";
 
+    private Context mContext;
+
 
     public OptionsPickerView(Context context) {
         super(context);
+        this.mContext = context;
+
         LayoutInflater.from(context).inflate(R.layout.pickerview_options, contentContainer);
         // -----确定和取消按钮
         btnSubmit = findViewById(R.id.btnSubmit);
@@ -167,5 +172,13 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
 
     public void setTitle(String title) {
         tvTitle.setText(title);
+    }
+
+    public void setSubmitColor(int drawable) {
+        ((Button)btnSubmit).setTextColor(mContext.getResources().getColor(drawable));
+    }
+
+    public void setCancelColor(int drawable) {
+        ((Button)btnCancel).setTextColor(mContext.getResources().getColor(drawable));
     }
 }

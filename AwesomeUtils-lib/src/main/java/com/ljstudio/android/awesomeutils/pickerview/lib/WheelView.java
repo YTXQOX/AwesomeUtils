@@ -103,8 +103,9 @@ public class WheelView extends View {
     private int mGravity = Gravity.CENTER;
     private int drawCenterContentStart = 0;//中间选中文字开始绘制位置
     private int drawOutContentStart = 0;//非中间文字开始绘制位置
-    private static final float SCALECONTENT = 0.8F;//非中间文字则用此控制高度，压扁形成3d错觉
-    private static final float CENTERCONTENTOFFSET = 6;//中间文字文字居中需要此偏移值
+    private static final float SCALE_CONTENT = 0.8F;//非中间文字则用此控制高度，压扁形成3d错觉
+    private static final float CENTER_CONTENT_OFFSET = 6;//中间文字文字居中需要此偏移值
+
 
     public WheelView(Context context) {
         this(context, null);
@@ -185,7 +186,7 @@ public class WheelView extends View {
         //计算两条横线和控件中间点的Y位置
         firstLineY = (measuredHeight - itemHeight) / 2.0F;
         secondLineY = (measuredHeight + itemHeight) / 2.0F;
-        centerY = (measuredHeight + maxTextHeight) / 2.0F - CENTERCONTENTOFFSET;
+        centerY = (measuredHeight + maxTextHeight) / 2.0F - CENTER_CONTENT_OFFSET;
         //初始化显示的item的position，根据是否loop
         if (initPosition == -1) {
             if (isLoop) {
@@ -299,7 +300,7 @@ public class WheelView extends View {
             return;
         }
         //可见的item数组
-        Object visibles[] = new Object[itemsVisible];
+        Object visible[] = new Object[itemsVisible];
         //滚动的Y值高度除去每行Item的高度，得到滚动了多少个item，即change数
         change = (int) (totalScrollY / itemHeight);
         try {
@@ -334,28 +335,29 @@ public class WheelView extends View {
             //判断是否循环，如果是循环数据源也使用相对循环的position获取对应的item值，如果不是循环则超出数据源范围使用""空白字符串填充，在界面上形成空白无数据的item项
             if (isLoop) {
                 index = getLoopMappingIndex(index);
-                visibles[counter] = adapter.getItem(index);
+                visible[counter] = adapter.getItem(index);
             } else if (index < 0) {
-                visibles[counter] = "";
+                visible[counter] = "";
             } else if (index > adapter.getItemsCount() - 1) {
-                visibles[counter] = "";
+                visible[counter] = "";
             } else {
-                visibles[counter] = adapter.getItem(index);
+                visible[counter] = adapter.getItem(index);
             }
 
             counter++;
-
         }
 
         //中间两条横线
         canvas.drawLine(0.0F, firstLineY, measuredWidth, firstLineY, paintIndicator);
         canvas.drawLine(0.0F, secondLineY, measuredWidth, secondLineY, paintIndicator);
+
         //单位的Label
         if (label != null) {
             int drawRightContentStart = measuredWidth - getTextWidth(paintCenterText, label);
             //靠右并留出空隙
-            canvas.drawText(label, drawRightContentStart - CENTERCONTENTOFFSET, centerY, paintCenterText);
+            canvas.drawText(label, drawRightContentStart - CENTER_CONTENT_OFFSET, centerY, paintCenterText);
         }
+
         counter = 0;
         while (counter < itemsVisible) {
             canvas.save();
@@ -369,7 +371,7 @@ public class WheelView extends View {
             if (angle >= 90F || angle <= -90F) {
                 canvas.restore();
             } else {
-                String contentText = getContentText(visibles[counter]);
+                String contentText = getContentText(visible[counter]);
 
                 //计算开始绘制的位置
                 measuredCenterContentStart(contentText);
@@ -382,31 +384,31 @@ public class WheelView extends View {
                     // 条目经过第一条线
                     canvas.save();
                     canvas.clipRect(0, 0, measuredWidth, firstLineY - translateY);
-                    canvas.scale(1.0F, (float) Math.sin(radian) * SCALECONTENT);
+                    canvas.scale(1.0F, (float) Math.sin(radian) * SCALE_CONTENT);
                     canvas.drawText(contentText, drawOutContentStart, maxTextHeight, paintOuterText);
                     canvas.restore();
                     canvas.save();
                     canvas.clipRect(0, firstLineY - translateY, measuredWidth, (int) (itemHeight));
                     canvas.scale(1.0F, (float) Math.sin(radian) * 1F);
-                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - CENTERCONTENTOFFSET, paintCenterText);
+                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - CENTER_CONTENT_OFFSET, paintCenterText);
                     canvas.restore();
                 } else if (translateY <= secondLineY && maxTextHeight + translateY >= secondLineY) {
                     // 条目经过第二条线
                     canvas.save();
                     canvas.clipRect(0, 0, measuredWidth, secondLineY - translateY);
                     canvas.scale(1.0F, (float) Math.sin(radian) * 1.0F);
-                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - CENTERCONTENTOFFSET, paintCenterText);
+                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - CENTER_CONTENT_OFFSET, paintCenterText);
                     canvas.restore();
                     canvas.save();
                     canvas.clipRect(0, secondLineY - translateY, measuredWidth, (int) (itemHeight));
-                    canvas.scale(1.0F, (float) Math.sin(radian) * SCALECONTENT);
+                    canvas.scale(1.0F, (float) Math.sin(radian) * SCALE_CONTENT);
                     canvas.drawText(contentText, drawOutContentStart, maxTextHeight, paintOuterText);
                     canvas.restore();
                 } else if (translateY >= firstLineY && maxTextHeight + translateY <= secondLineY) {
                     // 中间条目
                     canvas.clipRect(0, 0, measuredWidth, (int) (itemHeight));
-                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - CENTERCONTENTOFFSET, paintCenterText);
-                    int preSelectedItem = adapter.indexOf(visibles[counter]);
+                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - CENTER_CONTENT_OFFSET, paintCenterText);
+                    int preSelectedItem = adapter.indexOf(visible[counter]);
                     if (preSelectedItem != -1) {
                         selectedItem = preSelectedItem;
                     }
@@ -414,7 +416,7 @@ public class WheelView extends View {
                     // 其他条目
                     canvas.save();
                     canvas.clipRect(0, 0, measuredWidth, (int) (itemHeight));
-                    canvas.scale(1.0F, (float) Math.sin(radian) * SCALECONTENT);
+                    canvas.scale(1.0F, (float) Math.sin(radian) * SCALE_CONTENT);
                     canvas.drawText(contentText, drawOutContentStart, maxTextHeight, paintOuterText);
                     canvas.restore();
                 }

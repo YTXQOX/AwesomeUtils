@@ -31,7 +31,6 @@ public class WheelTime {
 	private int endYear = DEFULT_END_YEAR;
 
 
-
 	public WheelTime(View view) {
 		super();
 		this.view = view;
@@ -173,7 +172,7 @@ public class WheelTime {
 			wv_hours.setVisibility(View.GONE);
 			wv_mins.setVisibility(View.GONE);
 			break;
-		case HOURS_MINS:
+		case HOURS_MIN:
 			textSize = textSize * 4;
 			wv_year.setVisibility(View.GONE);
 			wv_month.setVisibility(View.GONE);
