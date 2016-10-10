@@ -351,7 +351,7 @@ public class WheelView extends View {
         canvas.drawLine(0.0F, firstLineY, measuredWidth, firstLineY, paintIndicator);
         canvas.drawLine(0.0F, secondLineY, measuredWidth, secondLineY, paintIndicator);
 
-        //单位的Label
+        //单位的Label`
         if (label != null) {
             int drawRightContentStart = measuredWidth - getTextWidth(paintCenterText, label);
             //靠右并留出空隙
