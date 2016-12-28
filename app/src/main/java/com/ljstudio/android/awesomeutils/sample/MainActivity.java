@@ -189,8 +189,8 @@ public class MainActivity extends ListActivity implements OnClickListener {
             Toast.makeText(this, "ItemType " + position, Toast.LENGTH_SHORT).show();
         }
 
-//        Intent intent = new Intent(MainActivity.this, TestActivity.class);
-        Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
+        Intent intent = new Intent(MainActivity.this, TestActivity.class);
+//        Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
         startActivity(intent);
     }
 

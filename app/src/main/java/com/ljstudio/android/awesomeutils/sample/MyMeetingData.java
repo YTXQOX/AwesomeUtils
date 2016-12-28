@@ -6,80 +6,146 @@ package com.ljstudio.android.awesomeutils.sample;
  */
 public class MyMeetingData {
 
-    private String id; // 预定记录id
-    private String title; // 预定会议事由
-    private String starttime; // 预定开始时间
-    private String endtime; // 预定结束时间
-    private String state;
-    private String conference_name; // 预定会议室名称
-    private String conference_id;
+//    did 域名id
+//    domain 域名
+//    passwd 域名密码
+//    enddate 到期时间
+//
+//    tid 虚机id
+//    enddate 到期日期
+//    stype 虚机类型
+//    domain 绑定域名
+//    typename 类型名称
+//
+//    Tid 数据库id
+//    osystem 系统名称
+//    IP 数据库IP
+//    passwd 数据库密码
+//    dbuser 数据库名
+//    enddate 到期时间
 
-    public String getId() {
-        return id;
+    private String did;
+
+    private String tid;
+    private String stype;
+    private String typename;
+
+    private String Tid;
+    private String osystem;
+    private String IP;
+    private String dbuser;
+
+    private String domain;
+    private String enddate;
+    private String passwd;
+
+    private String type;
+
+
+    public String getDid() {
+        return did;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDid(String did) {
+        this.did = did;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTid() {
+        return tid;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTid(String tid) {
+        this.tid = tid;
     }
 
-    public String getEndtime() {
-        return endtime;
+    public String getOsystem() {
+        return osystem;
     }
 
-    public void setEndtime(String endtime) {
-        this.endtime = endtime;
+    public void setOsystem(String osystem) {
+        this.osystem = osystem;
     }
 
-    public String getStarttime() {
-        return starttime;
+    public String getIP() {
+        return IP;
     }
 
-    public void setStarttime(String starttime) {
-        this.starttime = starttime;
+    public void setIP(String IP) {
+        this.IP = IP;
     }
 
-    public String getState() {
-        return state;
+    public String getDbuser() {
+        return dbuser;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setDbuser(String dbuser) {
+        this.dbuser = dbuser;
     }
 
-    public String getConference_name() {
-        return conference_name;
+    public String getDomain() {
+        return domain;
     }
 
-    public void setConference_name(String conference_name) {
-        this.conference_name = conference_name;
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
-    public String getConference_id() {
-        return conference_id;
+    public String getEnddate() {
+        return enddate;
     }
 
-    public void setConference_id(String conference_id) {
-        this.conference_id = conference_id;
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public String getStype() {
+        return stype;
+    }
+
+    public void setStype(String stype) {
+        this.stype = stype;
+    }
+
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
         return "MyMeetingData{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", starttime='" + starttime + '\'' +
-                ", endtime='" + endtime + '\'' +
-                ", state='" + state + '\'' +
-                ", conference_name='" + conference_name + '\'' +
-                ", conference_id='" + conference_id + '\'' +
+                "did='" + did + '\'' +
+                ", tid='" + tid + '\'' +
+                ", stype='" + stype + '\'' +
+                ", typename='" + typename + '\'' +
+                ", Tid='" + Tid + '\'' +
+                ", osystem='" + osystem + '\'' +
+                ", IP='" + IP + '\'' +
+                ", dbuser='" + dbuser + '\'' +
+                ", domain='" + domain + '\'' +
+                ", enddate='" + enddate + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
+
 }

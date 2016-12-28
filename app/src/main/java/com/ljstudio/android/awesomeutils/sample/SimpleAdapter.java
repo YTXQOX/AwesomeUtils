@@ -2,7 +2,6 @@ package com.ljstudio.android.awesomeutils.sample;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.ljstudio.android.awesomeutils.SystemOutUtil;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -40,7 +37,7 @@ public class SimpleAdapter extends ArrayAdapter<ItemType> implements PinnedSecti
             clear();
         }
 
-        String[] strSection = {"今天", "以后"};
+        String[] strSection = {"域名", "虚拟机", "数据库"}; //DOMAIN VM DB
         final int sectionsNumber = strSection.length;
         prepareSections(sectionsNumber);
 
@@ -61,12 +58,12 @@ public class SimpleAdapter extends ArrayAdapter<ItemType> implements PinnedSecti
 //                add(item);
 //            }
 
-            String strNowDate = DateFormatUtil.getCurrentDate(DateFormatUtil.sdfDate5);
             for (int j = 0; j < listData.size(); j++) {
-                String startDate = listData.get(j).getStarttime().split(" ")[0];
-                String strStartDate = DateFormatUtil.getDate(startDate, DateFormatUtil.sdfDate1, DateFormatUtil.sdfDate5);
+                String strType = listData.get(j).getType();
 
-                if (((0 == i) && strStartDate.equals(strNowDate)) || ((1 == i) && !strStartDate.equals(strNowDate))) {
+                if (((0 == i) && strType.equals("DOMAIN")) ||
+                        ((1 == i) && strType.equals("VM")) ||
+                        ((2 == i) && strType.equals("DB"))) {
                     ItemType item = new ItemType(ItemType.ITEM, section.textType.toUpperCase(Locale.ENGLISH) + " - " + j, listData.get(j));
                     item.sectionPosition = sectionPosition;
                     item.listPosition = listPosition++;
@@ -117,22 +114,16 @@ public class SimpleAdapter extends ArrayAdapter<ItemType> implements PinnedSecti
 
             myViewHolder.textViewPinned.setBackgroundColor(parent.getResources().getColor(R.color.gray_light));
         } else {
-            myViewHolder.textViewSubject.setText(item.myMeetingData.getTitle());
+            if (item.myMeetingData.getType().equals("DOMAIN")){
+                myViewHolder.textViewSubject.setText(item.myMeetingData.getDomain());
+                myViewHolder.textViewDate.setText(item.myMeetingData.getEnddate());
 
-            String startDate = item.myMeetingData.getStarttime().split(" ")[0];
-            String strStartDate = DateFormatUtil.getDate(startDate, DateFormatUtil.sdfDate1, DateFormatUtil.sdfDate5);
-            String strStartDateCN = DateFormatUtil.getDate(startDate, DateFormatUtil.sdfDate1, DateFormatUtil.sdfDate6);
-            String strNowDate = DateFormatUtil.getCurrentDate(DateFormatUtil.sdfDate5);
-
-            String time = item.myMeetingData.getStarttime().split(" ")[1] + "-" + item.myMeetingData.getEndtime().split(" ")[1];
-            if (strNowDate.equals(strStartDate)) { // 今天
-//                if ("正在开会") {
-//                    myViewHolder.textViewDate.setText("开会中");
-//                } else {
-                myViewHolder.textViewDate.setText(time);
-//                }
-            } else { // 以后
-                myViewHolder.textViewDate.setText("  " + strStartDateCN + "\n" + time);
+            } else if (item.myMeetingData.getType().equals("VM")) {
+                myViewHolder.textViewSubject.setText(item.myMeetingData.getTypename());
+                myViewHolder.textViewDate.setText(item.myMeetingData.getEnddate());
+            } else if (item.myMeetingData.getType().equals("DB")) {
+                myViewHolder.textViewSubject.setText(item.myMeetingData.getDbuser());
+                myViewHolder.textViewDate.setText(item.myMeetingData.getOsystem());
             }
 
             myViewHolder.itemLayout.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +133,6 @@ public class SimpleAdapter extends ArrayAdapter<ItemType> implements PinnedSecti
                 }
             });
         }
-
 
         return convertView;
     }

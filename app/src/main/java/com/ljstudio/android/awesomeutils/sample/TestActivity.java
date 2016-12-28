@@ -13,6 +13,9 @@ public class TestActivity extends AppCompatActivity {
     private SimpleAdapter simpleAdapter;
 
     private ArrayList<MyMeetingData> listData;
+    private ArrayList<MyMeetingData> listData1;
+    private ArrayList<MyMeetingData> listData2;
+    private ArrayList<MyMeetingData> listData3;
 
 
     @Override
@@ -35,20 +38,44 @@ public class TestActivity extends AppCompatActivity {
 
         MyMeetingData myMeetingData1 = new MyMeetingData();
         MyMeetingData myMeetingData2 = new MyMeetingData();
+        MyMeetingData myMeetingData3 = new MyMeetingData();
 
-        myMeetingData1.setId("PP12345678");
-        myMeetingData1.setTitle("开会开会开会");
-        myMeetingData1.setStarttime("2016-07-21 09:30");
-        myMeetingData1.setEndtime("2016-07-21 16:30");
-        myMeetingData1.setConference_name("暗部密室10001");
-        myMeetingData1.setConference_id("A10001");
 
-        myMeetingData2.setId("PP87654321");
-        myMeetingData2.setTitle("不开会不开会不开会");
-        myMeetingData2.setStarttime("2016-08-31 05:30");
-        myMeetingData2.setEndtime("2016-07-25 22:30");
-        myMeetingData2.setConference_name("大蛇丸基地10086");
-        myMeetingData2.setConference_id("A10086");
+//    did 域名id
+//    domain 域名
+//    passwd 域名密码
+//    enddate 到期时间
+        myMeetingData1.setDid("822463");
+        myMeetingData1.setDomain("开会开会开会");
+        myMeetingData1.setPasswd("123456");
+        myMeetingData1.setEnddate("2017-07-21 16:30:30");
+        myMeetingData1.setType("DOMAIN");
+
+//    tid 虚机id
+//    domain 绑定域名
+//    enddate 到期日期
+//    stype 虚机类型
+//    typename 类型名称
+        myMeetingData2.setTid("822462");
+        myMeetingData2.setDomain("不开会不开会不开会");
+        myMeetingData2.setEnddate("2017-08-31 05:30:00");
+        myMeetingData2.setStype("H890");
+        myMeetingData2.setTypename("大蛇丸基地10086");
+        myMeetingData2.setType("VM");
+
+//    Tid 数据库id
+//    osystem 系统名称
+//    IP 数据库IP
+//    passwd 数据库密码
+//    dbuser 数据库名
+//    enddate 到期时间
+        myMeetingData3.setTid("822461");
+        myMeetingData3.setOsystem("不开会不开会不开会");
+        myMeetingData3.setIP("2016-08-31 05:30");
+        myMeetingData3.setPasswd("2016-07-25 22:30");
+        myMeetingData3.setDbuser("大蛇丸基地10086");
+        myMeetingData3.setEnddate("A10086");
+        myMeetingData3.setType("DB");
 
         listData.add(myMeetingData1);
         listData.add(myMeetingData1);
@@ -59,17 +86,6 @@ public class TestActivity extends AppCompatActivity {
         listData.add(myMeetingData1);
         listData.add(myMeetingData1);
         listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
-        listData.add(myMeetingData1);
 
         listData.add(myMeetingData2);
         listData.add(myMeetingData2);
@@ -78,19 +94,16 @@ public class TestActivity extends AppCompatActivity {
         listData.add(myMeetingData2);
         listData.add(myMeetingData2);
         listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
-        listData.add(myMeetingData2);
+
+        listData.add(myMeetingData3);
+        listData.add(myMeetingData3);
+        listData.add(myMeetingData3);
+        listData.add(myMeetingData3);
+        listData.add(myMeetingData3);
+        listData.add(myMeetingData3);
+        listData.add(myMeetingData3);
+        listData.add(myMeetingData3);
+        listData.add(myMeetingData3);
 
         simpleAdapter = new SimpleAdapter(TestActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, listData);
         pinnedSectionListView.setAdapter(simpleAdapter);
